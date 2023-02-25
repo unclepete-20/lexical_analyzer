@@ -24,7 +24,7 @@ class Postfix(object):
     
     
     
-    # Para realizar dicha operacion, se utilizara el Shunting Yard Algorithm
+    # Convierte regex de infix a postfix utilizando Shunting Yard Algorithm
     def infix_to_postfix(self):
         pass
     
