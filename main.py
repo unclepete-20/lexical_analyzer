@@ -1,9 +1,16 @@
-from Postfix import Postfix
+from Postfix import Regex
+from AFN import AFN
 
-r = 'a(a|b)*ab(a|b)'
+r = 'a(a|b)*ab'
+filename = 'automata'
 
-expression = Postfix(r)
-alphabet = expression.get_alphabet()
+expression = Regex(r).postfixExpression
+afn = AFN(expression)
 
-print(alphabet)
-print(expression.postfix_final)
+
+print(expression)
+afn.render_afn()
+
+
+
+
