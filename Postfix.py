@@ -7,6 +7,9 @@
 @Desc    :   Clase para convertir un regex de formato infix a postfix.
 '''
 
+import re
+
+
 class Postfix(object):
     def __init__(self, regex):
         self.regex = regex
@@ -14,6 +17,7 @@ class Postfix(object):
         self.tokens = self.tokenize()
         self.postfix = self.shunting_yard()
         self.add_concatenation()
+        self.postfix_final = self.get_postfix_string()
     
     def add_concatenation(self):
         i = 0
@@ -85,3 +89,18 @@ class Postfix(object):
     def get_postfix_string(self):
         postfix_final = ''.join(self.postfix)
         return postfix_final
+    
+    def get_alphabet(self):
+        
+        substrings = re.findall(r'\b\w+\b', self.postfix_final)
+        full_string = "".join(substrings)
+        
+        alphabet = set()
+        
+        for token in full_string:
+            if token.isalpha() and token not in alphabet:
+                alphabet.add(token)
+        
+        return sorted(list(alphabet))
+            
+        
