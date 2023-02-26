@@ -7,7 +7,7 @@
 @Desc    :   Implementacion de caracteristicas de un Regex y funcionalidad Postfix
 '''
 
-class Regex(object):
+class Postfix(object):
 
     def __init__(self, regex):
         self.expression = regex

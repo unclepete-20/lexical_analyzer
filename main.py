@@ -1,10 +1,10 @@
-from Postfix import Regex
+from Postfix import Postfix
 from AFN import AFN
 
 r = 'a(a|b)*ab'
 filename = 'automata'
 
-expression = Regex(r).postfixExpression
+expression = Postfix(r).postfixExpression
 afn = AFN(expression)
 
 
