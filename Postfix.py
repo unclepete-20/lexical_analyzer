@@ -84,5 +84,4 @@ class Postfix(object):
     
     def get_postfix_string(self):
         postfix_final = ''.join(self.postfix)
-        postfix_final += '.'
         return postfix_final
