@@ -14,11 +14,11 @@ class Thompson(object):
     
     def __init__(self, regex_postfix):
         self.postfix = regex_postfix
-        self.nfa = self.thompson_algorithm()
+        self.nfa = self.thompson_construction()
         self.visualize_nfa()
 
     
-    def thompson_algorithm(self):
+    def thompson_construction(self):
         
         current_state = 0
         stack = []

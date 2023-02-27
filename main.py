@@ -10,9 +10,10 @@
 from Postfix import Postfix
 from Thompson import Thompson
 
-r = 'a(a|b)*ab'
+r = '(a|b)*a(a|b)(a|b)'
 
 expression = Postfix(r).postfixExpression
+print(expression)
 afn = Thompson(expression)
 
 
