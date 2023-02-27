@@ -1,11 +1,13 @@
 # -*-coding:utf-8 -*-
 '''
-@File    :   regex.py
+@File    :   Postfix.py
 @Date    :   2023/02/26
-@Author  :   Pedro Arriola (20188) y Oscar Lopez (20679)
+@Author  :   Pedro Arriola (20188)
 @Version :   1.0
-@Desc    :   Implementacion de caracteristicas de un Regex y funcionalidad Postfix
+@Desc    :   Implementacion de caracteristicas de un Regex y funcionalidad Postfix.
 '''
+
+import re
 
 class Postfix(object):
 
@@ -83,3 +85,17 @@ class Postfix(object):
             postfix += self.operatorStack.pop()
 
         return postfix
+    
+    
+    def get_alphabet(self):
+
+        substrings = re.findall(r'\b\w+\b', self.postfixExpression)
+        full_string = "".join(substrings)
+
+        alphabet = set()
+
+        for token in full_string:
+            if token.isalpha() and token not in alphabet:
+                alphabet.add(token)
+
+        return sorted(list(alphabet))

@@ -1,15 +1,25 @@
+# -*-coding:utf-8 -*-
+'''
+@File    :   main.py
+@Date    :   2023/02/26
+@Author  :   Pedro Arriola (20188)
+@Version :   1.0
+@Desc    :   Main donde se ejecuta toda la logica implementada.
+'''
+
 from Postfix import Postfix
-from AFN import AFN
+from Thompson import Thompson
 
 r = 'a(a|b)*ab'
-filename = 'automata'
 
 expression = Postfix(r).postfixExpression
-afn = AFN(expression)
+afn = Thompson(expression)
 
 
-print(expression)
-afn.render_afn()
+
+
+
+
 
 
 
