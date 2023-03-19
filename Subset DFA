@@ -1,0 +1,18 @@
+// Subset DFA of aab|*.a.b.
+digraph {
+	label="Subset DFA of aab|*.a.b." labelloc=t rankdir=LR
+	0 [label=0 shape=circle style=filled]
+	0 -> 1 [label=a]
+	1 [label=1 shape=circle]
+	1 -> 2 [label=a]
+	1 -> 3 [label=b]
+	2 [label=2 shape=circle]
+	2 -> 2 [label=a]
+	2 -> 4 [label=b]
+	3 [label=3 shape=circle]
+	3 -> 2 [label=a]
+	3 -> 3 [label=b]
+	4 [label=4 shape=doublecircle style=filled]
+	4 -> 2 [label=a]
+	4 -> 3 [label=b]
+}

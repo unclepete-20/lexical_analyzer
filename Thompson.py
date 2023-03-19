@@ -145,8 +145,9 @@ class Thompson(object):
                 current_state += 2
                 stack.append(char)
 
+        final_nfa = stack.pop()
         
-        return stack.pop()
+        return final_nfa
     
     def visualize_nfa(self):
         

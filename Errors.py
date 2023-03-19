@@ -53,6 +53,6 @@ class Errors(object):
                 
                 sys.exit(f"Error: expresion regular invalida")
         
-        valid_message = f"La expresion regular {self.regex} es correcta... Procediendo con las construcciones respectivas\n"
+        # Si todo cumple correctamente, se imprime este mensaje
+        print(f"\nLa expresion regular {self.regex} es correcta... Procediendo con las construcciones respectivas\n")
         
-        return valid_message
