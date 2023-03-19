@@ -33,11 +33,5 @@ class NFA(object):
                                                                self.mapping)
 
         
-        print(f"\nSimulacion de la cadena de prueba {test_string} por medio de NFA\n")
-        
-        # Se devuelve la respuesta final
-        if (self.acceptance_state in current_state):
-            print(f"\nLa cadena de prueba {test_string} SI pertenece a L(r)\n")
-        else:
-            print(f"\nLa cadena de prueba {test_string} NO pertenece a L(r)\n")
+        return (current_state in self.acceptance_states)
         

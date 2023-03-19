@@ -13,12 +13,16 @@ from Thompson import Thompson
 from Errors import Errors
 from Subset import SubsetDFA
 
-r = 'a(a|b)*ab'
-test = 'abbbbbab'
+# Regex de prueba
+
+# r = 'a(b*|c+)b|baa'
+# r = 'ab*a(b+)'
+r = 'b*ab?'
+
+test = 'bbbbab'
 
 # Se verifican errores, si los hay
-check_regex = Errors(r).valid
-print(check_regex)
+Errors(r)
 
 # Se convierte la expresion regular a formato postfix
 expression = Postfix(r).postfixExpression
@@ -26,7 +30,15 @@ expression = Postfix(r).postfixExpression
 # Se realiza la construccion de un AFN
 afn = Thompson(expression).nfa
 
-subset_dfa = SubsetDFA(expression, afn)
+
+# Se realiza la construccion de un AFD por medio de subconjuntos
+subset_dfa = SubsetDFA(expression, afn).subset_dfa
+simulate_subset = subset_dfa.simulate(test)
+
+if (simulate_subset == True):
+    print(f"\nLa cadena {test} SI pertence a L(r) de la expresion regular {r}\n")
+else:
+    print(f"\nLa cadena {test} NO pertence a L(r  de la expresion regular {r})\n")
 
 
 

@@ -17,7 +17,11 @@ class SubsetDFA(object):
         self.postfix = postfix
         self.nfa = nfa_to_subset 
         self.subset_dfa = self.subset_construction(self.nfa)
-        self.visualize_subset_dfa(self.subset_dfa)
+        self.visualize_subset_dfa("Subset DFA", self.subset_dfa)
+        
+        # DFA minimizado
+        self.minimized_dfa = self.subset_dfa.minimization()
+        self.visualize_subset_dfa("Minimized Subset DFA", self.minimized_dfa)
         
     # Definición de la función ε-closure.
     def ε_closure(self, states, mapping):
@@ -146,7 +150,7 @@ class SubsetDFA(object):
             acceptance_states=acceptance_states,
             mapping=mapping
         )
-    def visualize_subset_dfa(self, dfa):
+    def visualize_subset_dfa(self, name, dfa):
 
         description = ("Subset DFA of " + self.postfix)
         dot_graph = Digraph(comment=description)
@@ -173,4 +177,4 @@ class SubsetDFA(object):
                 dot_graph.edge(str(state), str(next_state), label=transition)
 
         # Visualización del DFA.
-        dot_graph.render("Subset DFA", format="png", view=True)
+        dot_graph.render(name, format="png", view=True)
