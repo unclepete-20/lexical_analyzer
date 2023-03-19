@@ -7,7 +7,7 @@ Este repositorio contiene la implementacion de Autómatas en todas sus versiones
 ### Funcionalidades ⚙️
 
 - [x] AFN a partir del algoritmo de Thompson
-- [ ] AFN ➡️ AFD por medio de la construccion de Subconjuntos
+- [x] AFN ➡️ AFD por medio de la construccion de Subconjuntos
 - [ ] AFD Directo
 - [ ] Minimización de AFN y AFD
 - [ ] Simulación de las cadenas por medio de Autómatas
