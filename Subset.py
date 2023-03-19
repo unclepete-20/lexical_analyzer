@@ -152,7 +152,7 @@ class SubsetDFA(object):
         )
     def visualize_subset_dfa(self, name, dfa):
 
-        description = ("Subset DFA of " + self.postfix)
+        description = (name + " of " + self.postfix)
         dot_graph = Digraph(comment=description)
         dot_graph.attr(
             rankdir="LR",

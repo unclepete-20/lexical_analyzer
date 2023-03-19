@@ -1,6 +1,6 @@
-// Subset DFA of b*a.b.
+// Minimized Subset DFA of b*a.b.
 digraph {
-	label="Subset DFA of b*a.b." labelloc=t rankdir=LR
+	label="Minimized Subset DFA of b*a.b." labelloc=t rankdir=LR
 	0 [label=0 shape=circle style=filled]
 	0 -> 3 [label=a]
 	0 -> 3 [label=b]
