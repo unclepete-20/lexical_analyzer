@@ -33,9 +33,9 @@ class Postfix(object):
             return 5
 
     def shunting_yard(self):
-
-        operators = ['|', '?', '+', '*']
-        bin = ['|']
+        
+        self.operators = ['|', '?', '+', '*']
+        self.bin = ['|']
 
         queue = ""
 
@@ -46,13 +46,13 @@ class Postfix(object):
             if ((l + 1) < len(self.expression)):
                 r = self.expression[l + 1]
 
-                if ((s != '(') and (r != ')') and (r not in operators) and (s not in bin)):
+                if ((s != '(') and (r != ')') and (r not in self.operators) and (s not in self.bin)):
                     queue += s + '.'
 
                 else:
                     queue += s
 
-            elif (s not in operators):
+            elif (s not in self.operators):
                 queue += s
 
         postfix = ''

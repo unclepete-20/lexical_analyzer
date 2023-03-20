@@ -6,7 +6,6 @@
 @Version :   1.0
 @Desc    :   Clase que define la estructura de un AFN.
 '''
-
 from Subset import SubsetDFA
 
 class NFA(object):
@@ -17,21 +16,21 @@ class NFA(object):
         self.initial_state = initial_state
         self.acceptance_state = acceptance_state
         self.mapping = mapping
+    
+    # Método para simular un NFA.
+    def simulate(self, input_string):
         
-    def simulate(self, test_string):
-
+        mapping = self.mapping
+        
         # Se obtiene el conjunto de estados alcanzables desde el estado inicial.
-        current_state = SubsetDFA.ε_closure({ self.initial_state }, self.mapping)
+        current_state = SubsetDFA.ε_closure({ self.initial_state }, mapping)
 
-        # Se recorre la cadena de prueba.
-        for symbol in test_string:
-            
-            # Conjunto de estados alcanzables desde el conjunto de estados actual con el símbolo actual.
-            current_state = SubsetDFA.ε_closure(SubsetDFA.move(current_state, 
-                                                               symbol, 
-                                                               self.mapping), 
-                                                               self.mapping)
+        # Se recorre la cadena de entrada.
+        for symbol in input_string:
 
-        
-        return (current_state in self.acceptance_states)
+            # Se obtiene el conjunto de estados alcanzables desde el conjunto de estados actual con el símbolo actual.
+            current_state = SubsetDFA.ε_closure(SubsetDFA.move(current_state, symbol, self.mapping), self.mapping)
+
+        # Se retorna si el estado de aceptación está en el conjunto de estados actual.
+        return (self.acceptance_state in current_state)
         

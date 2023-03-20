@@ -145,7 +145,7 @@ class Thompson(object):
                 current_state += 2
                 stack.append(char)
 
-        final_nfa = stack.pop()
+        final_nfa = stack[-1]
         
         return final_nfa
     
@@ -175,3 +175,4 @@ class Thompson(object):
 
         
         dot_graph.render("NFA", format="png", view=True)
+        
