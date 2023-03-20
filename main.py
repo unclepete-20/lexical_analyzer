@@ -17,11 +17,13 @@ import pyfiglet
 
 # Regex de prueba
 
-# r = 'a(b*|c+)b|baa'
+r = 'a(b*|c+)b|baa'
 # r = 'ab*a(b+)'
-r = 'b*ab?'
+#r = 'b*ab?'
 
-test = 'bbbbab'
+test = 'acb'
+# test = 'abbab'
+# test = 'bbbbab'
 
 header = pyfiglet.figlet_format("L E X E R")
 print(header)
@@ -43,13 +45,6 @@ end_time = time.time()
 total_time = end_time - start_time
 
 print(f"\nLa construccion de AFN tuvo un tiempo de ejecucion de {total_time} segundos\n")
-
-simulate_afn = True
-
-if (simulate_afn == True):
-    print(f"\nLa cadena {test} SI pertence a L(r) de la expresion regular {r} en AFN\n")
-else:
-    print(f"\nLa cadena {test} NO pertence a L(r  de la expresion regular {r} en AFN\n")
     
 print("===========================================================================================")
 
