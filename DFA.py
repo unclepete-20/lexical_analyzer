@@ -1,3 +1,12 @@
+# -*-coding:utf-8 -*-
+'''
+@File    :   DFA.py
+@Date    :   2023/03/10
+@Author  :   Pedro Arriola (20188)
+@Version :   1.0
+@Desc    :   Clase que define la estructura de un AFD.
+'''
+
 # Definición de la clase DFA.
 class DFA(object):
 
@@ -13,6 +22,7 @@ class DFA(object):
     # Minimizacion de DFA
     def minimization(self):
 
+        # Estado inicial y estados de aceptación iniciales.
         initial_state = [self.initial_state]
         min_acceptance_states = self.acceptance_states
 
@@ -43,13 +53,13 @@ class DFA(object):
 
                         # Cálculo del resultado de la función de transición con una entrada y caracter.
                         entry_mapping = self.mapping.get(entry, {})
-                        result = entry_mapping.get(char, 0)
+                        result = entry_mapping.get(char, False)
 
                         # Si el resultado está en la partición actual, se agrega a la tabla de particiones.
                         if (result in actual_partition):
 
                             # El valor de la fila en la tabla de particiones es el índice de la partición actual.
-                            partition_table[entry][char] = index
+                            partition_table[entry][char] = index if (result != False) else "X"
 
             # Instancia de una lista para las tablas según particiones.
             splitted_tables = []
@@ -119,20 +129,28 @@ class DFA(object):
                 if (state in self.acceptance_states):
                     min_acceptance_states.append(index)
 
-        # Obtención del mapping del DFA minimizado.
+        # Instancia del mapping del DFA minimizado.
         mapping = {}
-        for state in states:
-            new_mapping_entry = {}
-            for char in self.alphabet:
-                for entry, entry_mapping in self.mapping.items():
-                    if state == entry_mapping.get(char, state):
-                        new_mapping_entry[char] = entry
-            mapping[state] = new_mapping_entry
 
-        # Finalización de la construcción del mapping.
-        for state, entry_mapping in self.mapping.items():
-            if state not in mapping:
-                mapping[state] = {char: state for char in self.alphabet}
+        # Obtención del mapping del DFA minimizado.
+        for partition in partitions:
+
+            # Estado relacionado a la partición actual.
+            partition_state = partitions.index(partition)
+            mapping[partition_state] = {}
+            state_to_try = partition[0]
+
+            # Iteración sobre cada caracter del alfabeto.
+            for char in self.alphabet:
+
+                # Obtención del resultado de la función de transición con una entrada y caracter.
+                entry_mapping = self.mapping.get(state_to_try, {})
+                result = entry_mapping.get(char, False)
+
+                # Nueva entrada en el mapping si el resultado está en la partición iterada.
+                for other_partition in partitions:
+                    if ((type(result) != bool) and (result in other_partition)):
+                        mapping[partition_state][char] = partitions.index(other_partition)
 
         # Arreglo de DFAs con un estado sin transiciones.
         if (len(mapping) < 2):
